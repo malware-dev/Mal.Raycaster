@@ -12,20 +12,20 @@ On a plain wall LCD it just renders the scene.
 
 ## ⚠️ Performance prohibits this from being a real thing in its current form
 
-**This is a spike, not a usable mod.** The problem is not the visual frame rate;
-the scene renders fine. The problem is CPU cost: all of this work runs synchronously
-inside the game's update loop, so every ray march, per-dot lighting calculation,
-per-light shadow march, and the building of ten-thousand-plus sprites is charged
-against a single game frame's CPU budget on the main simulation thread. One LCD
-running this eats far more of that per-frame budget than any mod has a right to,
-starving the actual game simulation.
+**This is a spike, not a usable mod.** It is not the visuals and not the sprites:
+the scene draws fine and the engine emits the dots without trouble. The problem is
+the CPU cost of the raycasting itself. The whole per-frame computation (the DDA ray
+march per column, per-dot lighting, and the per-light shadow grid marches) runs
+synchronously inside the game's update loop, so it is charged against a single game
+frame's CPU budget on the main simulation thread. One LCD running this eats far more
+of that per-frame budget than any mod has a right to, starving the actual game
+simulation.
 
-There is no incremental tuning that rescues the current approach; the
-sprite-per-pixel design itself is the ceiling. Making this practical would require
-a different output path entirely (e.g. drawing into a sprite/texture buffer rather
-than thousands of individual sprites) and moving the heavy compute off the main
-thread. Treat everything here as an experiment in "does the full thing even run
-in-game," not as something to ship.
+There is no incremental tuning that rescues the current approach; the per-frame
+compute is the ceiling. Making this practical would require moving the heavy
+computation off the main thread (and/or amortizing it across frames rather than
+recomputing the full scene every tick). Treat everything here as an experiment in
+"does the full thing even run in-game," not as something to ship.
 
 ## What it does (when it runs)
 
