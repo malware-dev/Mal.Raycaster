@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="..\Mal.Terminal\Mal.Mods.Utilities\Mal.Mods.Utilities.shproj">
+    <Platform Project="AnyCPU" />
+    <Build />
+  </Project>
+  <Project Path="..\Mal.Terminal\Mal.MdkModMixin.Ion\Mal.MdkModMixin.Ion.shproj">
+    <Platform Project="AnyCPU" />
+    <Build />
+  </Project>
+  <Project Path="Mal.Raycaster/Mal.Raycaster.csproj">
+    <Platform Project="x64" />
+  </Project>
+</Solution>

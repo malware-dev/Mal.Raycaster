@@ -1,0 +1,6 @@
+.desloppify/
+bin/
+obj/
+.idea/
+.claude/
+mdk.local.ini
